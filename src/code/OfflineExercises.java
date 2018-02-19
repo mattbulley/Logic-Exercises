@@ -33,33 +33,43 @@ public class OfflineExercises {
 
 	public String getSandwich(String input) {
 		
+		String reference = "bread";
 		int breadCount = 0;
 		input = input.toLowerCase();
 		boolean foundBread = false;
 		int beginIndex = 0;
 		int endIndex = 0;
 		
-		for(int i = 0; i < input.length(); i++) {
-			
-			if(input.charAt(i) == 'b') {
+		
+		try {
+			for(int i = 0; i < input.length(); i++) {
 				
-				
-					if(input.charAt(i+1) == 'r' && input.charAt(i+2) == 'e' && input.charAt(i+3) == 'a' && input.charAt(i+4) == 'd') {
-						if(!foundBread) {
-							beginIndex = i + 4;
-							foundBread = true;
-							breadCount++;
-						} else if (foundBread) {
-							foundBread = false;
-							endIndex = i;
-							breadCount++;
+				if(input.charAt(i) == 'b') {
+					
+					
+						if(input.charAt(i+1) == 'r' && input.charAt(i+2) == 'e' && input.charAt(i+3) == 'a' && input.charAt(i+4) == 'd') {
+							if(!foundBread) {
+								beginIndex = i + reference.length();
+								foundBread = true;
+								breadCount++;
+							} else if (foundBread) {
+								foundBread = false;
+								endIndex = i;
+								breadCount++;
+							}
 						}
-					}
+				}
 			}
+			
+			
+			if(breadCount == 2)
+				return input.substring(beginIndex, endIndex);
+	
+		} catch (StringIndexOutOfBoundsException ex) {
+			
 		}
 		
-		if(breadCount == 2)
-			return input.substring(beginIndex, endIndex);
+		
 		
 		return "";
 	}
@@ -176,21 +186,34 @@ public class OfflineExercises {
 		String output = "";
 		boolean checking = false;
 		
-		for(int i = 0; i < input.length() - 1; i++) {
-				
-				if(input.charAt(i) == input.charAt(i+1)) {
-					if(!checking) {
-						output += Character.toString(input.charAt(+i));
-						checking = true;
+		
+		try {
+			for(int i = 0; i <= input.length() - 1; i++) {
 					
-					}
-					
-				} else if(input.charAt(i) != input.charAt(i+1)) {
+				if(i == input.length() -1)
+				{
 					output += Character.toString(input.charAt(i));
+					return output;
+				}
+				
+				if(input.charAt(i) != input.charAt(i+1)) {
+					output += Character.toString(input.charAt(i));
+					
 					checking = false;
 					
+					
+				} else if(input.charAt(i) == input.charAt(i+1))
+				{
+						if(!checking) {
+							//output += Character.toString(input.charAt(i+1));
+							checking = true;
+						}		
 				}
-
+				
+			
+			}
+		} catch (StringIndexOutOfBoundsException ex) {
+			
 		}
 		
 		return output;
