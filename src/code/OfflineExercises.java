@@ -88,7 +88,7 @@ public class OfflineExercises {
 		int biggest = 0;
 		int middle = 0;
 		int smallest = 0;
-		int space = 0;
+		
 		
 		if(a>b) {
 			if(a>c) {
@@ -125,9 +125,7 @@ public class OfflineExercises {
 		}
 	
 		
-		space = biggest - middle;
-		
-		if((biggest - middle) == space && (middle - smallest) == space)
+		if((biggest - middle) == (middle - smallest))
 			return true;
 		else
 			return false;
